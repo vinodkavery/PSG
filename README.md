@@ -19,7 +19,7 @@ The goal is to maximize ad revenue while minimizing user churn and enhancing ret
 
 The solution is split into two Jupyter notebooks:
 
-- **PSG_Ad_DataGen_102025_v2.ipynb** — Creates realistic synthetic gaming telemetry data.
+- **PSG_Ad_DataGen_102025_v2.ipynb** — Creates synthetic gaming telemetry data.
 - **PSG_Ad_Models_102125_v3.ipynb** — Builds and evaluates ML models for prediction, segmentation, and dynamic ad policies using XGBoost, neural networks, clustering, bandits, and reinforcement learning.
 
 ### Key Outcomes
