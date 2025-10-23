@@ -1,0 +1,3 @@
+[START] 03_feature_engineering @ 2025-10-21 20:32:27
+[INFO] 20:32:27 — Engineered features. X_all shape: (201506, 23) | y_ret: (201506,) | y_churn: (201506,)
+[END] 03_feature_engineering — ✅ OK — runtime: 0.29s

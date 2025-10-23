@@ -1,0 +1,6 @@
+[START] 06_model_training @ 2025-10-21 22:01:40
+[INFO] 22:05:10 — LR best score (roc_auc): 0.5392 | best params: {'clf__penalty': 'l2', 'clf__C': 0.01}
+[INFO] 22:06:05 — XGB-CLF best score (roc_auc): 0.5371 | best params: {'clf__colsample_bytree': np.float64(0.7994341385156624), 'clf__gamma': np.float64(0.21687112062220498), 'clf__learning_rate': np.float64(0.04453268565208614), 'clf__max_depth': 3, 'clf__min_child_weight': 3, 'clf__n_estimators': 161, 'clf__reg_alpha': np.float64(0.2689740341711065), 'clf__reg_lambda': np.float64(0.837490352664173), 'clf__subsample': np.float64(0.8543789707044382)}
+[INFO] 22:07:58 — XGB-REG best score (neg_mse): -0.002011 | best params: {'reg__colsample_bytree': np.float64(0.7373214740299999), 'reg__gamma': np.float64(0.04697853433549023), 'reg__learning_rate': np.float64(0.0925195376027278), 'reg__max_depth': 5, 'reg__min_child_weight': 2, 'reg__n_estimators': 262, 'reg__reg_alpha': np.float64(0.252678085585721), 'reg__reg_lambda': np.float64(0.9222763099082195), 'reg__subsample': np.float64(0.7959584409273248)}
+[INFO] 22:07:58 — Hyperparameter tuning complete. Best models saved to OUTPUT_DIR.
+[END] 06_model_training — ✅ OK — runtime: 377.74s

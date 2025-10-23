@@ -1,0 +1,4 @@
+[START] 14_rl_simulation @ 2025-10-21 23:05:22
+[INFO] 23:05:32 — Saved RL ad decisions to D:/CAREER/INTERVIEWS/Play Simple Games/Case Study/PSG_ML Solution/Model Outputs/Model_Outputs_102125_v3\rl_ad_decisions.csv
+[INFO] 23:05:32 — Saved RL agent & learning curve.
+[END] 14_rl_simulation — ✅ OK — runtime: 10.34s

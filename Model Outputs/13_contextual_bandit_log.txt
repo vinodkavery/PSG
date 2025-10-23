@@ -1,0 +1,4 @@
+[START] 13_contextual_bandit @ 2025-10-21 23:05:12
+[INFO] 23:05:19 — Saved ad decisions to D:/CAREER/INTERVIEWS/Play Simple Games/Case Study/PSG_ML Solution/Model Outputs/Model_Outputs_102125_v3\ad_decisions.csv
+[INFO] 23:05:19 — Saved LinUCB agent & learning curve.
+[END] 13_contextual_bandit — ✅ OK — runtime: 6.78s

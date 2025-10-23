@@ -1,0 +1,34 @@
+[START] 12_sequence_modeling @ 2025-10-21 23:06:02
+[INFO] 23:06:25 — LSTM epoch=0 mean_loss=0.2982
+[INFO] 23:07:27 — LSTM epoch=1 mean_loss=0.2975
+[INFO] 23:08:29 — LSTM epoch=2 mean_loss=0.2971
+[INFO] 23:09:35 — LSTM epoch=3 mean_loss=0.2959
+[INFO] 23:10:39 — LSTM epoch=4 mean_loss=0.2928
+[INFO] 23:11:46 — LSTM epoch=5 mean_loss=0.2855
+[INFO] 23:12:55 — LSTM epoch=6 mean_loss=0.2699
+[INFO] 23:14:05 — LSTM epoch=7 mean_loss=0.2471
+[INFO] 23:15:08 — LSTM epoch=8 mean_loss=0.2192
+[INFO] 23:16:11 — LSTM epoch=9 mean_loss=0.1889
+[INFO] 23:17:18 — LSTM epoch=10 mean_loss=0.1633
+[INFO] 23:18:18 — LSTM epoch=11 mean_loss=0.1411
+[INFO] 23:19:26 — LSTM epoch=12 mean_loss=0.1252
+[INFO] 23:20:27 — LSTM epoch=13 mean_loss=0.1129
+[INFO] 23:21:34 — LSTM epoch=14 mean_loss=0.1041
+[INFO] 23:22:11 — LSTM epoch=15 mean_loss=0.0975
+[INFO] 23:23:21 — LSTM epoch=16 mean_loss=0.0935
+[INFO] 23:24:26 — LSTM epoch=17 mean_loss=0.0905
+[INFO] 23:25:40 — LSTM epoch=18 mean_loss=0.0874
+[INFO] 23:26:47 — LSTM epoch=19 mean_loss=0.0851
+[INFO] 23:27:57 — LSTM epoch=20 mean_loss=0.0834
+[INFO] 23:29:01 — LSTM epoch=21 mean_loss=0.0819
+[INFO] 23:30:11 — LSTM epoch=22 mean_loss=0.0820
+[INFO] 23:31:17 — LSTM epoch=23 mean_loss=0.0804
+[INFO] 23:32:28 — LSTM epoch=24 mean_loss=0.0791
+[INFO] 23:33:27 — LSTM epoch=25 mean_loss=0.0776
+[INFO] 23:33:44 — LSTM epoch=26 mean_loss=0.0773
+[INFO] 23:34:00 — LSTM epoch=27 mean_loss=0.0763
+[INFO] 23:34:15 — LSTM epoch=28 mean_loss=0.0759
+[INFO] 23:34:32 — LSTM epoch=29 mean_loss=0.0753
+[INFO] 23:34:33 — Improved LSTM test AUC=0.5004, PR-AUC=0.7877, test_loss=0.8421
+[INFO] 23:34:33 — Trained improved LSTM and saved weights.
+[END] 12_sequence_modeling — ✅ OK — runtime: 1711.71s

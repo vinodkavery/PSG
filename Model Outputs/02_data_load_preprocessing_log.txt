@@ -1,0 +1,4 @@
+[START] 02_data_load_preprocessing @ 2025-10-21 20:31:48
+[INFO] 20:31:48 — Loaded shape: (201506, 19)
+[INFO] 20:31:49 — Final cleaned shape: (201506, 19)
+[END] 02_data_load_preprocessing — ✅ OK — runtime: 0.65s

@@ -1,0 +1,2 @@
+Best lambda: 1.0000
+Expected mean reward: -0.091484

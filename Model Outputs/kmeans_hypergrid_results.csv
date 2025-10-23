@@ -1,0 +1,2 @@
+n_clusters,n_init,max_iter,algorithm,silhouette,inertia
+4,1,100,lloyd,0.20729587613210582,605168.4852034317

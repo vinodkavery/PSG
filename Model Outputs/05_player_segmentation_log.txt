@@ -1,0 +1,6 @@
+[START] 05_player_segmentation @ 2025-10-21 20:55:49
+[INFO] 20:55:49 — Starting KMeans with k=4, n_init=1, max_iter=100, alg=lloyd
+[INFO] 21:08:18 — Best KMeans params: {'n_clusters': 4, 'n_init': 1, 'max_iter': 100, 'algorithm': 'lloyd'} | Silhouette Score: 0.2073
+[INFO] 21:08:18 — Top 3 configurations (silhouette):
+[{'n_clusters': 4, 'n_init': 1, 'max_iter': 100, 'algorithm': 'lloyd', 'silhouette': 0.20729587613210582, 'inertia': 605168.4852034317}]
+[END] 05_player_segmentation — ✅ OK — runtime: 748.84s
