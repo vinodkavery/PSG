@@ -13,7 +13,7 @@ This project simulates a **mobile gaming environment** and applies **machine lea
 | 📘 **`PSG_Ad_DataGen.ipynb`**          | Generates a **synthetic dataset** of player sessions, ad exposures, engagement, and monetization metrics based on realistic 2025 gaming benchmarks.                        |
 | 🤖 **`PSG_Ad_Models_102125_v3.ipynb`** | Trains and evaluates **machine learning models** (classification & contextual bandit preparation) to predict optimal ad-serving actions that balance **reward vs. churn**. |
 | 📄 **`requirements.txt`**              | Lists all Python dependencies required to run both notebooks.                                                                                                              |
-| 💾 *(optional)* `sample_data.csv`      | Example output of the synthetic dataset.                                                                                                                                   |
+                                                                                                                            |
 
 ---
 
