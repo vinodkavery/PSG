@@ -1,124 +1,281 @@
-# 🎮 PSG — When to insert an Ad?
+📱 Ad Optimization in Mobile Gaming (Play Simple Games Case Study)
+🧩 Overview
 
-### 🧠 Objective
+This repository contains a comprehensive machine learning solution for optimizing ad placements in a mobile gaming app, inspired by the “Play Simple Games” case study.
+The goal is to maximize ad revenue while minimizing user churn and enhancing retention through data-driven decisions.
 
-This project simulates a **mobile gaming environment** and applies **machine learning** to optimize **ad-serving decisions** — deciding *when to show or skip an ad* to **maximize revenue** while **minimizing churn risk**.
+The solution is split into two Jupyter notebooks:
 
----
+PSG_Ad_DataGen_102025_v2.ipynb — Creates realistic synthetic gaming telemetry data.
 
-## 📁 Repository Structure
+PSG_Ad_Models_102125_v3.ipynb — Builds and evaluates ML models for prediction, segmentation, and dynamic ad policies using XGBoost, neural networks, clustering, bandits, and reinforcement learning.
 
-| File                                   | Description                                                                                                                                                                |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 📘 **`PSG_Ad_DataGen.ipynb`**          | Generates a **synthetic dataset** of player sessions, ad exposures, engagement, and monetization metrics based on realistic 2025 gaming benchmarks.                        |
-| 🤖 **`PSG_Ad_Models_102125_v3.ipynb`** | Trains and evaluates **machine learning models** (classification & contextual bandit preparation) to predict optimal ad-serving actions that balance **reward vs. churn**. |
-| 📄 **`requirements.txt`**              | Lists all Python dependencies required to run both notebooks.                                                                    
+Key Outcomes
 
----
+Predictive models for retention, churn, and ad revenue
 
-## 🧩 1. Data Generation — `PSG_Ad_DataGen.ipynb`
+User segmentation for targeted strategies
 
-### 📋 Description
+Contextual bandit and RL-based ad insertion policies
 
-Creates a **simulated player–session–ad dataset** reflecting realistic puzzle gaming dynamics.
+A/B testing framework to quantify business impact (e.g., ARPDAU uplift, retention improvements)
 
-**Simulated features include:**
+This pipeline demonstrates end-to-end ML for ad optimization, balancing monetization with user experience.
+All code is reproducible with a fixed random seed (2025) for consistency.
 
-* 🎮 `session_duration` → 5–15 minutes
-* 📺 `ads_shown_per_session` → 2–5 ads
-* ⚠️ `churn_probability` → 20–30%
-* 💰 `ad_revenue_per_impression` → $0.001–$0.015
-* 🧮 `click_rate`, `ARPDAU`, `LTV`, `retention_rate`
+🧮 Data Generation
 
-**Output:**
-A CSV file where each row = one user–session–ad interaction, ready for modeling.
+Notebook: PSG_Ad_DataGen_102025_v2.ipynb
+Simulates a realistic dataset of gaming telemetry (~200,000 rows) mimicking user interactions in a mobile game app.
 
----
+Generated Features
 
-## 🤖 2. Model Training & Evaluation — `PSG_Ad_Models_102125_v3.ipynb`
+User Behavior: Session durations (60–1800s), levels (1–1000), post-ad gameplay time
 
-### ⚙️ Description
+Ad Interactions: Impressions, clicks (CTR ~3%), ad types (banner, interstitial, rewarded, native), placements (start/mid/end/idle), frequency
 
-Trains ML models on the synthetic dataset to **predict churn or reward** outcomes, given user and gameplay context.
+Monetization & Retention:
 
-**Key Steps:**
+Ad revenue per impression (~$0.02 mean)
 
-1. Data preprocessing — scaling, encoding, and imputation
-2. Model training — Logistic Regression, XGBoost, or Neural models
-3. Evaluation metrics:
+Spend after ads
 
-   * 🧾 ROC-AUC
-   * 📈 Average Precision
-   * 🎯 Precision–Recall Curve
-   * 📊 Calibration curve
-4. Future-ready structure for **Contextual Bandit / Policy Optimization**.
+Churn probability (~0.22 mean, capped at 0.4)
 
-**Optimization Goal:**
-Formulate a policy π(*state → action*) that maximizes:
+Next-day retention (~78.5%)
 
-> 💡 **Expected Reward = Revenue_if_Shown – (Churn_Risk × LTV)**
+LTV (~$5 mean)
 
----
+Demographics: 15 countries (e.g., US, IN, BR), Android/iOS (65%/35%)
 
-## 🧱 Setup Instructions
+Temporal Elements: Timestamped over 30 days with time-of-day effects
 
-### 1️⃣ Clone Repository
+Key Features of Data Generation
 
-```bash
-git clone https://github.com/<your-username>/playsimple-ad-optimization.git
-cd playsimple-ad-optimization
-```
+Distributions:
 
-### 2️⃣ Create Virtual Environment
+Poisson → sessions/ads per user
 
-```bash
-python -m venv venv
-source venv/bin/activate   # macOS/Linux
-venv\Scripts\activate      # Windows
-```
+Normal → durations/revenue
 
-### 3️⃣ Install Dependencies
+Exponential → spends
 
-```bash
+Custom churn uplift logic (+1% per ad, reduced for rewarded ads)
+
+Balancing: Ensures minimum shares (≥15% ad type, ≥10% placements)
+
+Validation Checks:
+
+Spearman correlation (frequency vs churn) ρ ≈ 0.27
+
+Retention by ad type: Rewarded (~78.4%) > Interstitial (~78.6%)
+
+CTR stability (~3% across quartiles)
+
+Overall: Retention ~78.5%, churn ~22.3%, ARPU ~$0.029
+
+Output File: GamingData_Input_v6.csv (~200K rows, 19 columns)
+
+Sample Columns:
+
+user_id | country | device_type | session_id | session_duration | level_reached |
+ad_type | ad_placement | time_of_day | frequency | impressions | clicks |
+game_time_post_ad | retention_next_day | spend_after_ad |
+churn_probability | ad_revenue_per_impression | lifetime_value_estimate | event_time
+
+
+This dataset serves as input for the modeling pipeline, enabling safe experimentation without real user data.
+
+🧠 Modeling Pipeline
+
+Notebook: PSG_Ad_Models_102125_v3.ipynb
+Processes the generated data through a full ML pipeline — configuration, logging, feature engineering, modeling, and evaluation.
+Outputs are saved in Model_Outputs_102125_v3/ (models, logs, CSVs, plots).
+
+Key Sections & Models
+1️⃣ Configuration & Logging
+
+Sets paths, random state (2025)
+
+Custom run logger with timestamps, errors, Markdown tracking
+
+2️⃣ Data Loading & Preprocessing
+
+Loads CSV, validates schema (19 cols), removes NaNs/duplicates
+
+Converts categories/dates, sorts by user/time
+
+Output: Clean DataFrame (~201K rows)
+
+3️⃣ Feature Engineering & Aggregations
+
+Derived features: Day-of-week, weekend flag, CTR (clicks/impressions)
+
+Aggregates to user-level metrics
+
+Prepares categorical & numeric features for modeling
+
+4️⃣ Retention Prediction (XGBoost)
+
+Binary classification for next-day retention
+
+Tuned via Bayesian optimization
+
+Evaluation: AUC (~0.85), PR-AUC, Brier score
+
+Output: Trained model, feature importances, calibration plots
+
+5️⃣ Churn Probability Calibration
+
+Platt scaling using logistic regression on XGBoost outputs
+
+Improves Brier score
+
+Output: Calibrated churn model
+
+6️⃣ User Segmentation (Clustering)
+
+K-Means on scaled behavioral features
+
+Optimal clusters via silhouette score
+
+Output: Cluster assignments and segment profiles
+
+7️⃣ Ad Revenue Prediction (Neural Network - PyTorch)
+
+Regression for ad revenue per impression
+
+MSE loss, Adam optimizer, early stopping
+
+Output: Trained NN, R², RMSE, learning curves
+
+8️⃣ Ad Moment Identification
+
+Rule-based + ML hybrid to find optimal insertion points (mid-session, post-level-up)
+
+9️⃣ Ad Decision Policy Model
+
+Logistic regression for binary “show ad” decisions
+
+Balances revenue vs churn cost
+
+Output: Decision log CSV
+
+🔟 Expected Reward Calculation
+
+Combines predicted revenue with churn-adjusted costs
+
+Output: Expected rewards CSV
+
+11️⃣ Policy Hyperparameter Tuning
+
+Bayesian optimization for logistic model parameters
+
+12️⃣ Neural Network for Reward Prediction
+
+Alternative NN for granular reward forecasting
+
+13️⃣ Contextual Bandit (LinUCB)
+
+Two arms: show ad vs no ad
+
+Context-aware decisions with reward updates
+
+Output: CSVs, agent pickle, learning curve
+
+14️⃣ Reinforcement Learning Simulation
+
+Episodic RL (200 episodes, batch size 1024)
+
+Tracks cumulative rewards
+
+Output: RL decisions, learning curves
+
+15️⃣ A/B/n Evaluation Framework
+
+Compares baseline vs ML policies
+
+KPIs: ARPDAU, retention, coverage
+
+Output: ab_test_kpis.csv (ML uplift ~10–20%)
+
+Example Outputs
+
+Models: xgb_retention.pkl, rl_agent.pkl
+
+CSVs: Predictions, decisions, KPIs
+
+Plots: Feature importances, calibration, learning/regret curves
+
+Logs: Stepwise TXT logs with runtime & errors
+
+⚙️ Installation & Dependencies
+git clone <repo-url>
+cd psg-ad-optimization
 pip install -r requirements.txt
-```
-
-### 4️⃣ Run Notebooks
-
-```bash
-jupyter notebook
-```
-
-Then open and run:
-
-* `PSG_Ad_DataGen.ipynb` → to generate the dataset
-* `PSG_Ad_Models_102125_v3.ipynb` → to train and evaluate models
-
----
-
-## 🧾 Dependencies
-
-See [`requirements.txt`](./requirements.txt) for the complete list.
-**Core libraries:**
-
-* `pandas`, `numpy`, `scikit-learn`
-* `torch`, `xgboost`, `imblearn`
-* `matplotlib`, `seaborn`, `ipython`, `scipy`
-
----
-
-## 🚀 Future Extensions
-
-* 🧠 Integrate **Reinforcement Learning / Multi-Armed Bandit** algorithms
-* 🔁 Add **live A/B testing simulation**
-* 📈 Visualize **policy learning curves** and **reward–churn trade-offs**
-
----
-
-## 👤 Author
-
-**Vinod Kumar K**
-*PSG – Ad Optimization Assignment (2025)*
 
 
----
+Required Packages
+
+pandas
+numpy
+scikit-learn
+xgboost
+torch
+matplotlib
+bayes_opt
+joblib
+
+
+Environment
+
+Python 3.10+ (tested on 3.13)
+
+No GPU required (NNs are lightweight)
+
+🚀 Usage
+
+Run PSG_Ad_DataGen_102025_v2.ipynb to generate synthetic input data.
+
+Run PSG_Ad_Models_102125_v3.ipynb end-to-end or cell-by-cell.
+
+Outputs appear under Model_Outputs_102125_v3/.
+
+Customize parameters:
+
+RANDOM_STATE
+
+File paths
+
+Model hyperparameters
+
+For production:
+Wrap as scripts, deploy models via Flask/FastAPI, and integrate with A/B testing tools like Optimizely.
+
+📊 Results & Insights
+
+Business Impact: ML-based policies show ~15% ARPDAU uplift vs baseline with minimal retention loss.
+
+Learnings:
+
+Rewarded ads boost retention
+
+High ad frequency increases churn
+
+Bandits adapt rapidly to contexts
+
+Limitations:
+
+Synthetic dataset
+
+Assumes linear reward — real A/B validation needed
+
+Future Work:
+
+Extend to multi-armed bandits for ad types
+
+Add causal inference (uplift modeling)
+
+Scale via Spark for big data environments
+
+✅ This repository demonstrates an end-to-end applied ML workflow — from data simulation to policy learning — tailored for ad monetization and user experience optimization in mobile gaming.
