@@ -1,4 +1,4 @@
-# 📱 Ad Optimization in Mobile Gaming (Play Simple Games Case Study)
+# 📱 Ad Optimization in Mobile Gaming (PSG Case Study)
 
 ## 📑 Table of Contents
 1. [Overview](#-overview)
