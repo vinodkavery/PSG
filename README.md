@@ -85,70 +85,70 @@ Outputs are saved in `Model_Outputs_102125_v3/` (models, logs, CSVs, plots).
 
 ### Key Sections & Models
 
-**1️⃣ Configuration & Logging**
+**1. Configuration & Logging**
 - Sets paths, random state (2025)
 - Custom run logger with timestamps, errors, Markdown tracking
 
-**2️⃣ Data Loading & Preprocessing**
+**2. Data Loading & Preprocessing**
 - Loads CSV, validates schema (19 cols), removes NaNs/duplicates
 - Converts categories/dates, sorts by user/time
 - **Output:** Clean DataFrame (~201K rows)
 
-**3️⃣ Feature Engineering & Aggregations**
+**3. Feature Engineering & Aggregations**
 - Derived features: Day-of-week, weekend flag, CTR (clicks/impressions)
 - Aggregates to user-level metrics
 - Prepares categorical & numeric features for modeling
 
-**4️⃣ Retention Prediction (XGBoost)**
+**4. Retention Prediction (XGBoost)**
 - Binary classification for next-day retention
 - Tuned via Bayesian optimization
 - **Evaluation:** AUC (~0.85), PR-AUC, Brier score
 - **Output:** Trained model, feature importances, calibration plots
 
-**5️⃣ Churn Probability Calibration**
+**5. Churn Probability Calibration**
 - Platt scaling using logistic regression on XGBoost outputs
 - Improves Brier score
 - **Output:** Calibrated churn model
 
-**6️⃣ User Segmentation (Clustering)**
+**6. User Segmentation (Clustering)**
 - K-Means on scaled behavioral features
 - Optimal clusters via silhouette score
 - **Output:** Cluster assignments and segment profiles
 
-**7️⃣ Ad Revenue Prediction (Neural Network - PyTorch)**
+**7. Ad Revenue Prediction (Neural Network - PyTorch)**
 - Regression for ad revenue per impression
 - MSE loss, Adam optimizer, early stopping
 - **Output:** Trained NN, R², RMSE, learning curves
 
-**8️⃣ Ad Moment Identification**
+**8. Ad Moment Identification**
 - Rule-based + ML hybrid to find optimal insertion points (mid-session, post-level-up)
 
-**9️⃣ Ad Decision Policy Model**
+**9. Ad Decision Policy Model**
 - Logistic regression for binary “show ad” decisions
 - Balances revenue vs churn cost
 - **Output:** Decision log CSV
 
-**🔟 Expected Reward Calculation**
+**10. Expected Reward Calculation**
 - Combines predicted revenue with churn-adjusted costs
 - **Output:** Expected rewards CSV
 
-**11️⃣ Policy Hyperparameter Tuning**
+**11. Policy Hyperparameter Tuning**
 - Bayesian optimization for logistic model parameters
 
-**12️⃣ Neural Network for Reward Prediction**
+**12. Neural Network for Reward Prediction**
 - Alternative NN for granular reward forecasting
 
-**13️⃣ Contextual Bandit (LinUCB)**
+**13. Contextual Bandit (LinUCB)**
 - Two arms: show ad vs no ad
 - Context-aware decisions with reward updates
 - **Output:** CSVs, agent pickle, learning curve
 
-**14️⃣ Reinforcement Learning Simulation**
+**14. Reinforcement Learning Simulation**
 - Episodic RL (200 episodes, batch size 1024)
 - Tracks cumulative rewards
 - **Output:** RL decisions, learning curves
 
-**15️⃣ A/B/n Evaluation Framework**
+**15. A/B/n Evaluation Framework**
 - Compares baseline vs ML policies
 - **KPIs:** ARPDAU, retention, coverage
 - **Output:** `ab_test_kpis.csv` (ML uplift ~10–20%)
@@ -191,7 +191,7 @@ joblib
 
 - Run `PSG_Ad_DataGen_102025_v2.ipynb` to generate synthetic input data.
 - Run `PSG_Ad_Models_102125_v3.ipynb` end-to-end or cell-by-cell.
-- Outputs appear under `Model_Outputs_102125_v3/`.
+- Outputs appear under `Model_Outputs`.
 
 **Customize parameters:**
 - `RANDOM_STATE`
